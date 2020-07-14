@@ -31,14 +31,18 @@
       >
     </td>
     <td
-      class="printer-status__value printer-status__value-3 printer-status__no-set-value"
-      (click)="showQuickControlFan()"
+      class="printer-status__value printer-status__value-3"
+      [ngClass]="{ 'printer-status__no-set-value': printerStatus.nozzle.set === 0 }"
+      (click)="showQuickControlHotend()"
       matRipple
       [matRippleUnbounded]="false"
     >
-      <img src="assets/fan.svg" />
+      <img src="assets/nozzle.svg" />
       <span class="printer-status__actual-value"
-        >{{ printerStatus.fan }}<span class="printer-status__unit">%</span></span
+        >{{ printerStatus.nozzle.current }}<span class="printer-status__unit">°C</span></span
+      >
+      <span class="printer-status__set-value" *ngIf="printerStatus.nozzle.set"
+        >/{{ printerStatus.nozzle.set }}<span class="unit">°C</span></span
       >
     </td>
   </tr>
